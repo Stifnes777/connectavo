@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css?family=Titillium+Web:300,400,600,700&display=swap" rel="stylesheet">
+    <title>Connectavo</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
+    <link href="./css/style.css" rel="stylesheet">
+  </head>
+  <body>
+    <!-- Loader -->
+    <div id='loading_wrap'>
+      <p class="uppercase primary">Connectavo</p>
+      <div style="width: 400px; margin: 50px auto">
+        <div class="progress">
+          <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="max-width: 100%">
+          <span class="title">loading..</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Sidebar -->
+    <div class="d-flex h-100vh position-fixed z-99">
+      <div class="bg-white border-right d-flex py-4 shadow align-items-center justify-content-between flex-column">
+        <img src="./images/logo.svg" class="mb-5" alt="">
+        <div class="list-group list-group-flush">
+          <a href="#" class="list-group-item border-0 mb-2 hover"><img src="./images/Dashboard-ina.svg" alt=""></a>
+          <a href="#" class="list-group-item border-0 mb-2 hover"><img src="./images/request-ina.svg" alt=""></a>
+          <a href="#" class="list-group-item border-0 mb-2 hover"><img src="./images/workorder-ina.svg" alt=""></a>
+          <a href="#" class="list-group-item border-0 mb-2 hover"><img src="./images/shiftplanning-a.svg" alt=""></a>
+          <a href="#" class="list-group-item border-0 mb-2 hover"><img src="./images/asset-ina.svg" alt=""></a>
+          <a href="#" class="list-group-item border-0 mb-2 hover"><img src="./images/reporting-ina.svg" alt=""></a>
+        </div>
+        <a href="#" class="list-group-item border-0"><img src="./images/!.svg" alt=""></a>
+      </div>
+    </div>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg shadow navbar-light bg-white">
+      <h1 class="uppercase primary fs-24 ml-4 my-3 font-weight-light" href="#">shift planning</h1>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto align-items-center">
+          <li class="nav-item active">
+            <a class="nav-link" href="#"><img src="./images/search.svg" alt=""></a>
+          </li>
+          <li class="nav-item mx-3">
+            <a class="nav-link position-relative" href="#">
+              <img src="./images/notification-new.svg" alt="">
+              <span class="badge badge-light">4</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link position-relative" href="#">
+              <img src="./images/profile-img.svg" alt="">
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <!-- Main -->
+    <main class="bg-lightblue">
+      <div class="container">
+        <div class="row mb-4">
+          <div class="col justify-content-between d-flex p-0">
+            <div class="bg-white d-flex rounded-sm secondary">
+              <button type="button" class="btn btn-tab active uppercase fs-12 ls-1 px-4 py-2" btn-tab="1">Employee</button>
+              <button type="button" class="btn btn-tab uppercase fs-12 ls-1 px-4 py-2" btn-tab="2">Team</button>
+            </div>
+            <button type="button" class="btn bg-white shadow border uppercase fs-13 ls-1  px-4 py-2">Vacation Manager</button>
+          </div>
+        </div>
+        <div class="row border rounded bg-white">
+          <div class="col-12 col-md-3 p-3" id="collapse">
+            <h5 class="blue fs-12 uppercase"><span>(6) </span>Requests</h5>
+            <h5 class="red fs-12 uppercase"><span>(6) </span>Overdue</h5>
+            <div id="datepicker" data-date="12/03/2012" class="mt-4"></div>
+            <input type="hidden" id="my_hidden_input">
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <div class="">
+                  <input type="checkbox" aria-label="Checkbox for following text input">
+                  <span class="fs-13">My Workorders</span>
+                </div>
+              </div>
+            </div>
+            <button type="button" class="btn bg-white shadow uppercase fs-12 secondary ls-1" data-toggle="modal" data-target="#editFilterModal"><img src="./images/filter.svg" alt=""> Filters
+            </button>
+            <br><br>
+            <div class="filters">
+              <span class="rounded-pill bg-white filter d-inline-block border p-1 mb-2 fs-12 primary">
+                <span class="filter-name">asset name </span>
+                  <img src="./images/x.svg" class="ml-2 close-filter" alt="">
+              </span>
+              <br>
+              <span class="rounded-pill bg-white d-inline-block border p-1 mb-2 fs-12 primary">another-asset name <img src="./images/x.svg" class="ml-2 close-filter" alt=""></span><br>
+              <span class="rounded-pill bg-white d-inline-block border p-1 mb-2 fs-12 primary">employee name <img src="./images/x.svg" class="ml-2 close-filter" alt=""></span><br>
+            </div>
+          </div>
+          <div class="col-sm-9 border-left" id="content">
+            <div class="row justify-content-between shadow align-items-end position-relative">
+              <div id="collapse-btn" class="">
+                <div>
+                  <button type="button" class="toggle-btn btn px-1">
+                  <img src="./images/toggle_btn.svg" alt="">
+                  </button>
+                </div>
+              </div>
+              <div class="col-3">
+                <div class="day-slider py-3">
+                  <a href=""><img src="./images/arrow.svg" class="prev-arrow" alt=""></a>
+                  <span class="btn bg-white border mx-2 uppercase fs-13">
+                    Today
+                  </span>
+                  <a href=""><img src="./images/arrow.svg" class="next-arrow" alt=""></a>
+                  <p class="m-0 time">7th Sep 2019</p>
+                </div>
+              </div>
+              <div class="col-3">
+                <ul class="nav nav-tabs" id="time-tabs" role="tablist">
+                  <li class="nav-item">
+                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Day</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Week</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <div class="tab-content" id="myTabContent">
+                  <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                    <div class="row border-bottom hover">
+                      <div class="col-3 p-3 border-right">
+                        <p class="name">
+                          Ina Horton
+                        </p>
+                        <span class="time">
+                          6/8 hrs <a href="#" class="edit" data-toggle="modal" data-target="#editTimeModal"><img src="./images/edit.svg" alt=""></a>
+                        </span>
+                      </div>
+                      <div class="col overflow-auto d-flex align-items-center p-4 card-holder" >
+                        <div class="planning-card mr-3 in-progress" draggable="true">
+                          <div class="card rounded-lg overflow-hidden">
+                            <div class="card-body p-2">
+                              <img src="./images/!.svg" alt=""><span class="category">In-progress</span>
+                              <p class="card-text fs-12 mt-1 p-0">Work Order Name.</p>
+                            </div>
+                            <div class="card-footer text-muted fs-13 p-2">
+                              ETA: 10 hrs
+                            </div>
+                          </div>
+                        </div>
+                        <div class="planning-card mr-3 open" draggable="true">
+                          <div class="card rounded-lg overflow-hidden">
+                            <div class="card-body p-2">
+                              <img src="./images/!!.svg" alt=""><span class="category">Open</span>
+                              <p class="card-text fs-12 mt-1 p-0">Work Order Name.</p>
+                            </div>
+                            <div class="card-footer text-muted fs-13 p-2">
+                              ETA: 10 hrs
+                            </div>
+                          </div>
+                        </div>
+                        <div class="planning-card mr-3 unplanned" draggable="true">
+                          <div class="card rounded-lg overflow-hidden">
+                            <div class="card-body p-2">
+                              <img src="./images/!.svg" alt=""><span class="category">Open</span>
+                              <p class="card-text fs-12 mt-1 p-0">Unplanned wo.</p>
+                            </div>
+                            <div class="card-footer text-muted fs-13 p-2">
+                              ETA: 10 hrs
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row border-bottom hover">
+                      <div class="col-3 p-3 border-right">
+                        <p class="name">
+                          Naam Hikaafihai Beghum Mehr Ban…
+                        </p>
+                        <span class="time">
+                          6/8 hrs <a href="#" class="edit" data-toggle="modal" data-target="#editTimeModal"
+                          ><img src="./images/edit.svg" alt=""></a>
+                        </span>
+                      </div>
+                      <div class="col overflow-auto d-flex align-items-center p-4 card-holder">
+                        <div class="planning-card mr-3 in-progress" draggable="true">
+                          <div class="card rounded-lg overflow-hidden">
+                            <div class="card-body p-2">
+                              <img src="./images/!.svg" alt=""><span class="category">In-progress</span>
+                              <p class="card-text fs-12 mt-1 p-0">Work Order Name.</p>
+                            </div>
+                            <div class="card-footer text-muted fs-13 p-2">
+                              ETA: 10 hrs
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row border-bottom hover">
+                      <div class="col-3 p-3 border-right">
+                        <p class="name">
+                          Curtis Morgan
+                        </p>
+                        <span class="time">
+                          6/8 hrs <a href="#" class="edit" data-toggle="modal" data-target="#editTimeModal"><img src="./images/edit.svg" alt=""></a>
+                        </span>
+                      </div>
+                      <div class="col overflow-auto d-flex align-items-center p-4 card-holder">
+                        <div class="planning-card mr-3 open" draggable="true">
+                          <div class="card rounded-lg overflow-hidden">
+                            <div class="card-body p-2">
+                              <img src="./images/!!.svg" alt=""><span class="category">Open</span>
+                              <p class="card-text fs-12 mt-1 p-0">Work Order Name.</p>
+                            </div>
+                            <div class="card-footer text-muted fs-13 p-2">
+                              ETA: 10 hrs
+                            </div>
+                          </div>
+                        </div>
+                        <div class="planning-card mr-3 in-progress" draggable="true">
+                          <div class="card rounded-lg overflow-hidden">
+                            <div class="card-body p-2">
+                              <img src="./images/!.svg" alt=""><span class="category">In-progress</span>
+                              <p class="card-text fs-12 mt-1 p-0">Work Order Name.</p>
+                            </div>
+                            <div class="card-footer text-muted fs-13 p-2">
+                              ETA: 10 hrs
+                            </div>
+                          </div>
+                        </div>
+                        <div class="planning-card mr-3 unplanned" draggable="true">
+                          <div class="card rounded-lg overflow-hidden">
+                            <div class="card-body p-2">
+                              <img src="./images/!.svg" alt=""><span class="category">Open</span>
+                              <p class="card-text fs-12 mt-1 p-0">Unplanned wo.</p>
+                            </div>
+                            <div class="card-footer text-muted fs-13 p-2">
+                              ETA: 10 hrs
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                    <div class="row">
+                      <div class="col-2 border-right"></div>
+                      <div class="col">
+                        <div class="row bg-brown">
+                          <div class="col-2 border-right"></div>
+                          <div class="col d-flex align-items-center overflow-auto">
+                            <div class="date-header uppercase">
+                              <p class="fs-13 date">MON, 15 jan</p>
+                            </div>
+                            <div class="date-header uppercase ml-3">
+                              <p class="fs-13 date">Tue, 16 jan</p>
+                            </div>
+                            <div class="date-header uppercase ml-3">
+                              <p class="fs-13 date">Wed, 17 jan</p>
+                            </div>
+                            <div class="date-header uppercase ml-3">
+                              <p class="fs-13 date">Thu, 18 jan</p>
+                            </div>
+                            <div class="date-header uppercase ml-3">
+                              <p class="fs-13 date">Fri, 19 jan</p>
+                            </div>
+                            <div class="date-header uppercase ml-3">
+                              <p class="fs-13 date">Sat, 20 jan</p>
+                            </div>
+                            <div class="date-header uppercase ml-3">
+                              <p class="fs-13 date">Sun, 21 jan</p>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-2 border-right"></div>
+                          <div class="col d-flex align-items-center overflow-auto">
+                            <div class="date-header uppercase">
+                              <span class="time">
+                                6/8 hrs <a href="#" class="edit" data-toggle="modal" data-target="#editTimeModal"><img src="./images/edit.svg" alt=""></a>
+                              </span>
+                            </div>
+                            <div class="date-header uppercase ml-3">
+                              <span class="time">
+                                6/8 hrs <a href="#" class="edit" data-toggle="modal" data-target="#editTimeModal"><img src="./images/edit.svg" alt=""></a>
+                              </span>
+                            </div>
+                            <div class="date-header uppercase ml-3">
+                              <span class="time">
+                                6/8 hrs <a href="#" class="edit" data-toggle="modal" data-target="#editTimeModal"><img src="./images/edit.svg" alt=""></a>
+                              </span>
+                            </div>
+                            <div class="date-header uppercase ml-3">
+                              <span class="time">
+                                6/8 hrs <a href="#" class="edit" data-toggle="modal" data-target="#editTimeModal"><img src="./images/edit.svg" alt=""></a>
+                              </span>
+                            </div>
+                            <div class="date-header uppercase ml-3">
+                              <span class="time">
+                                6/8 hrs <a href="#" class="edit" data-toggle="modal" data-target="#editTimeModal"><img src="./images/edit.svg" alt=""></a>
+                              </span>
+                            </div>
+                            <div class="date-header uppercase ml-3">
+                              <span class="time">
+                                6/8 hrs <a href="#" class="edit" data-toggle="modal" data-target="#editTimeModal"><img src="./images/edit.svg" alt=""></a>
+                              </span>
+                            </div>
+                            <div class="date-header uppercase ml-3">
+                              <span class="time">
+                                6/8 hrs <a href="#" class="edit" data-toggle="modal" data-target="#editTimeModal"><img src="./images/edit.svg" alt=""></a>
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row border-bottom border-top hover">
+                      <div class="col-2 p-4 border-right pt-2">
+                        <p class="name fs-13">
+                          Curtis Morgan
+                        </p>
+                      </div>
+                      <div class="col d-flex align-items-start overflow-auto">
+                        <div class="weekly-plan card-holder border-right pt-3">
+                          <div class="planning-card mr-3 in-progress" draggable="true">
+                            <div class="card rounded-lg overflow-hidden">
+                              <div class="card-body p-2">
+                                <img src="./images/!.svg" alt=""><span class="category">In-progress</span>
+                                <p class="card-text fs-12 mt-1 p-0">Work Order Name.</p>
+                              </div>
+                              <div class="card-footer text-muted fs-13 p-2">
+                                ETA: 10 hrs
+                              </div>
+                            </div>
+                          </div>
+                          <div class="planning-card mr-3 open" draggable="true">
+                            <div class="card rounded-lg overflow-hidden">
+                              <div class="card-body p-2">
+                                <img src="./images/!!.svg" alt=""><span class="category">Open</span>
+                                <p class="card-text fs-12 mt-1 p-0">Work Order Name.</p>
+                              </div>
+                              <div class="card-footer text-muted fs-13 p-2">
+                                ETA: 10 hrs
+                              </div>
+                            </div>
+                          </div>
+                          <div class="planning-card mr-3 unplanned" draggable="true">
+                            <div class="card rounded-lg overflow-hidden">
+                              <div class="card-body p-2">
+                                <img src="./images/!.svg" alt=""><span class="category">Open</span>
+                                <p class="card-text fs-12 mt-1 p-0">Unplanned wo.</p>
+                              </div>
+                              <div class="card-footer text-muted fs-13 p-2">
+                                ETA: 10 hrs
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="weekly-plan card-holder border-right pt-3 ml-3">
+                          <div class="planning-card mr-3 in-progress" draggable="true">
+                            <div class="card rounded-lg overflow-hidden">
+                              <div class="card-body p-2">
+                                <img src="./images/!.svg" alt=""><span class="category">In-progress</span>
+                                <p class="card-text fs-12 mt-1 p-0">Work Order Name.</p>
+                              </div>
+                              <div class="card-footer text-muted fs-13 p-2">
+                                ETA: 10 hrs
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="weekly-plan card-holder border-right pt-3 ml-3">
+                          <div class="planning-card mr-3 open" draggable="true">
+                            <div class="card rounded-lg overflow-hidden">
+                              <div class="card-body p-2">
+                                <img src="./images/!!.svg" alt=""><span class="category">Open</span>
+                                <p class="card-text fs-12 mt-1 p-0">Work Order Name.</p>
+                              </div>
+                              <div class="card-footer text-muted fs-13 p-2">
+                                ETA: 10 hrs
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="weekly-plan card-holder border-right pt-3 ml-3">
+                          <div class="planning-card mr-3 open" draggable="true">
+                            <div class="card rounded-lg overflow-hidden">
+                              <div class="card-body p-2">
+                                <img src="./images/!!.svg" alt=""><span class="category">Open</span>
+                                <p class="card-text fs-12 mt-1 p-0">Work Order Name.</p>
+                              </div>
+                              <div class="card-footer text-muted fs-13 p-2">
+                                ETA: 10 hrs
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="weekly-plan card-holder border-right pt-3 ml-3">
+                          <div class="planning-card mr-3 in-progress" draggable="true">
+                            <div class="card rounded-lg overflow-hidden">
+                              <div class="card-body p-2">
+                                <img src="./images/!!.svg" alt=""><span class="category">Open</span>
+                                <p class="card-text fs-12 mt-1 p-0">Work Order Name.</p>
+                              </div>
+                              <div class="card-footer text-muted fs-13 p-2">
+                                ETA: 10 hrs
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="weekly-plan card-holder border-right pt-3 ml-3">
+                          <div class="planning-card mr-3 unplanned" draggable="true">
+                            <div class="card rounded-lg overflow-hidden">
+                              <div class="card-body p-2">
+                                <img src="./images/!!.svg" alt=""><span class="category">Open</span>
+                                <p class="card-text fs-12 mt-1 p-0">Work Order Name.</p>
+                              </div>
+                              <div class="card-footer text-muted fs-13 p-2">
+                                ETA: 10 hrs
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-2 border-right"></div>
+                      <div class="col  d-flex align-items-center overflow-auto">
+                        <div class="date-header uppercase">
+                          <span class="time fs-13">
+                            6/8 hrs <a href="#" class="edit" data-toggle="modal" data-target="#editTimeModal"><img src="./images/edit.svg" alt=""></a>
+                          </span>
+                        </div>
+                        <div class="date-header uppercase ml-3">
+                          <span class="time fs-13">
+                            6/8 hrs <a href="#" class="edit" data-toggle="modal" data-target="#editTimeModal"><img src="./images/edit.svg" alt=""></a>
+                          </span>
+                        </div>
+                        <div class="date-header uppercase ml-3">
+                          <span class="time fs-13">
+                            6/8 hrs <a href="#" class="edit" data-toggle="modal" data-target="#editTimeModal"><img src="./images/edit.svg" alt=""></a>
+                          </span>
+                        </div>
+                        <div class="date-header uppercase ml-3">
+                          <span class="time fs-13">
+                            6/8 hrs <a href="#" class="edit" data-toggle="modal" data-target="#editTimeModal"><img src="./images/edit.svg" alt=""></a>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row hover border-top">
+                      <div class="col-2 p-4 border-right">
+                        <p class="name fs-13">
+                          Ina Horton
+                        </p>
+                      </div>
+                      <div class="col d-flex align-items-start overflow-auto">
+                        <div class="weekly-plan card-holder border-right pt-3">
+                          <div class="planning-card mr-3 in-progress" draggable="true">
+                            <div class="card rounded-lg overflow-hidden">
+                              <div class="card-body p-2">
+                                <img src="./images/!.svg" alt=""><span class="category">In-progress</span>
+                                <p class="card-text fs-12 mt-1 p-0">Work Order Name.</p>
+                              </div>
+                              <div class="card-footer text-muted fs-13 p-2">
+                                ETA: 10 hrs
+                              </div>
+                            </div>
+                          </div>
+                          <div class="planning-card mr-3 open" draggable="true">
+                            <div class="card rounded-lg overflow-hidden">
+                              <div class="card-body p-2">
+                                <img src="./images/!!.svg" alt=""><span class="category">Open</span>
+                                <p class="card-text fs-12 mt-1 p-0">Work Order Name.</p>
+                              </div>
+                              <div class="card-footer text-muted fs-13 p-2">
+                                ETA: 10 hrs
+                              </div>
+                            </div>
+                          </div>
+                          <div class="planning-card mr-3 unplanned" draggable="true">
+                            <div class="card rounded-lg overflow-hidden">
+                              <div class="card-body p-2">
+                                <img src="./images/!.svg" alt=""><span class="category">Open</span>
+                                <p class="card-text fs-12 mt-1 p-0">Unplanned wo.</p>
+                              </div>
+                              <div class="card-footer text-muted fs-13 p-2">
+                                ETA: 10 hrs
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="weekly-plan card-holder ml-3 border-right pt-3">
+                          <div class="planning-card mr-3 in-progress" draggable="true">
+                            <div class="card rounded-lg overflow-hidden">
+                              <div class="card-body p-2">
+                                <img src="./images/!.svg" alt=""><span class="category">In-progress</span>
+                                <p class="card-text fs-12 mt-1 p-0">Work Order Name.</p>
+                              </div>
+                              <div class="card-footer text-muted fs-13 p-2">
+                                ETA: 10 hrs
+                              </div>
+                            </div>
+                          </div>
+                          <div class="planning-card mr-3 open" draggable="true">
+                            <div class="card rounded-lg overflow-hidden">
+                              <div class="card-body p-2">
+                                <img src="./images/!!.svg" alt=""><span class="category">Open</span>
+                                <p class="card-text fs-12 mt-1 p-0">Work Order Name.</p>
+                              </div>
+                              <div class="card-footer text-muted fs-13 p-2">
+                                ETA: 10 hrs
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="weekly-plan card-holder ml-3 border-right pt-3">
+                          <div class="planning-card mr-3 open" draggable="true">
+                            <div class="card rounded-lg overflow-hidden">
+                              <div class="card-body p-2">
+                                <img src="./images/!!.svg" alt=""><span class="category">Open</span>
+                                <p class="card-text fs-12 mt-1 p-0">Work Order Name.</p>
+                              </div>
+                              <div class="card-footer text-muted fs-13 p-2">
+                                ETA: 10 hrs
+                              </div>
+                            </div>
+                          </div>
+                          <div class="planning-card mr-3 unplanned" draggable="true">
+                            <div class="card rounded-lg overflow-hidden">
+                              <div class="card-body p-2">
+                                <img src="./images/!.svg" alt=""><span class="category">Open</span>
+                                <p class="card-text fs-12 mt-1 p-0">Unplanned wo.</p>
+                              </div>
+                              <div class="card-footer text-muted fs-13 p-2">
+                                ETA: 10 hrs
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="weekly-plan card-holder ml-3 border-right pt-3">
+                          <div class="planning-card mr-3 open" draggable="true">
+                            <div class="card rounded-lg overflow-hidden">
+                              <div class="card-body p-2">
+                                <img src="./images/!!.svg" alt=""><span class="category">Open</span>
+                                <p class="card-text fs-12 mt-1 p-0">Work Order Name.</p>
+                              </div>
+                              <div class="card-footer text-muted fs-13 p-2">
+                                ETA: 10 hrs
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="weekly-plan card-holder ml-3 border-right pt-3">
+                          <div class="planning-card mr-3 in-progress" draggable="true">
+                            <div class="card rounded-lg overflow-hidden">
+                              <div class="card-body p-2">
+                                <img src="./images/!!.svg" alt=""><span class="category">Open</span>
+                                <p class="card-text fs-12 mt-1 p-0">Work Order Name.</p>
+                              </div>
+                              <div class="card-footer text-muted fs-13 p-2">
+                                ETA: 10 hrs
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="weekly-plan card-holder ml-3 border-right pt-3">
+                          <div class="planning-card mr-3 unplanned" draggable="true">
+                            <div class="card rounded-lg overflow-hidden">
+                              <div class="card-body p-2">
+                                <img src="./images/!!.svg" alt=""><span class="category">Open</span>
+                                <p class="card-text fs-12 mt-1 p-0">Work Order Name.</p>
+                              </div>
+                              <div class="card-footer text-muted fs-13 p-2">
+                                ETA: 10 hrs
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Modals -->
+        <div class="row">
+          <div class="col-6">
+            <div class="modal fade edit-time" id="editTimeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content p-3 h-100vh border-0">
+                  <div class="modal-header">
+                    <h4 class="blue uppercase fs-13">Edit Available hours</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <img src="./images/x.svg" alt="">
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <h4 class="uppercase">18 sep 2019</h4>
+                    <label for="basic-url">Ina Horton</label>
+                    <div class="input-group mb-3">
+                      <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn bg-blue text-light" data-dismiss="modal">Save</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="modal fade edit-filter" id="editFilterModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content p-3 h-100vh border-0">
+                  <div class="modal-header">
+                    <h4 class="blue uppercase fs-13">Filters</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <img src="./images/x.svg" alt="">
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                      <form>
+                        <div class="form-group">
+                          <label for="exampleInputEmail1 uppercase">Employee</label>
+                          <select class="form-control" id="employeeSelect" placeholder="None Selected">
+                            <option value="" selected="">None Selected</option>
+                            <option>employee 1</option>
+                            <option>employee 2</option>
+                            <option>employee 3</option>
+                            <option>employee 4</option>
+                          </select>
+                        </div>
+                        <div class="form-group">
+                          <label for="exampleInputPassword1">Asset</label>
+                            <select class="form-control" id="assetSelect" placeholder="None Selected">
+                            <option value="" selected="">None Selected</option>
+                            <option>asset 1</option>
+                            <option>asset 2</option>
+                            <option>asset 3</option>
+                            <option>asset 4</option>
+                          </select>
+                        </div>
+                        <div class="form-group form-check">
+                          <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                          <label class="form-check-label" for="exampleCheck1">incl. children assets</label>
+                        </div>
+                      </form>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn bg-blue text-light filter-selection" data-dismiss="modal">Save</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+    <script src="./js/dnd.js"></script>
+    
+    <script>
+    $(document).ready(function(){
+        setTimeout(function () {
+            $('#loading_wrap').fadeOut();  
+        }, 1800);
+    });
+    $('#datepicker').datepicker();
+    $('#datepicker').on('changeDate', function() {
+    $('#my_hidden_input').val(
+    $('#datepicker').datepicker('getFormattedDate')
+    );
+    });
+    $('[btn-tab]').click(function () {
+      var t = $(this).attr('btn-tab');
+      $('[btn-tab]').removeClass('active');
+      $('[btn-tab = "' + t + '"]').addClass('active');
+    })
+    $('.toggle-btn').click(function(){
+    $('#collapse').toggleClass('d-none');
+    $('#content').toggleClass('col-md-12');
+    });
+    $('.edit').click(function(){
+    $('#modal').toggleClass('active');
+    });
+    $('#collapse-btn').click(function(){
+    $(this).toggleClass('active');
+    $('.day-slider').toggleClass('ml-3');
+    });
+    $('.close-filter').click(function(){
+      var s = $(this).parent();
+      $(s).removeClass('d-inline-block');
+      $(s).addClass('d-none');
+    });
+    </script>
+  </body>
+</html>

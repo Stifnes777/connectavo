@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 55.2 (78181) - https://sketchapp.com -->
+    <title>!</title>
+    <desc>Created with Sketch.</desc>
+    <g id="!" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Group-4-Copy" transform="translate(0.000000, -2.000000)">
+            <circle id="Oval" fill="#BCC5C8" cx="8" cy="10" r="8"></circle>
+            <text id="!" font-family="TitilliumWeb-SemiBold, Titillium Web" font-size="12" font-weight="500" fill="#FFFFFF">
+                <tspan x="6.404" y="14.5">!</tspan>
+            </text>
+        </g>
+    </g>
+</svg>
